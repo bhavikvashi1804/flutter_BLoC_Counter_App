@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import './counter_bloc.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,35 +13,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Counter App',
-      home: MyHomePage(),
+      home: BlocProvider<CounterBloc>(
+        create: (context) => CounterBloc(),
+        child: MyHomePage(),
+      ),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
-
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-  void _decrementCounter(){
-    setState(() {
-      _counter--;
-    });
-  }
+class MyHomePage extends StatelessWidget {
+ 
 
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Counter App'),
@@ -51,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              '$_counter',
+              'Value',
               style: Theme.of(context).textTheme.headline4,
             ),
           ],
@@ -61,13 +50,13 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           FloatingActionButton(
-            onPressed: _incrementCounter,
+            onPressed: (){},
             tooltip: 'Increment',
             child: Icon(Icons.add),
           ),
           SizedBox(width:10),
           FloatingActionButton(
-            onPressed: _decrementCounter,
+            onPressed: (){},
             tooltip: 'Decrement',
             child: Icon(Icons.remove),
           ),
