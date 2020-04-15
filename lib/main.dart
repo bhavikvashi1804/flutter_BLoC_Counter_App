@@ -3,8 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 import './counter_bloc.dart';
-
+import './simple_bloc_delegate.dart';
 void main() {
+  BlocSupervisor.delegate = SimpleBlocDelegate();
   runApp(MyApp());
 }
 
